@@ -105,3 +105,9 @@ st.plotly_chart(fig, use_container_width=True)
 
 st.caption("Last updated: " + time.strftime("%Y-%m-%d %H:%M:%S"))
 
+# ▼ 파일 맨 아래
+try:
+    import notion_portfolio_sync as nps
+    nps.main()          # 노션 가격 동기화 1회 실행
+except Exception as e:
+    st.warning(f"Notion sync failed: {e}")
