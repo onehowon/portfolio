@@ -1,13 +1,10 @@
-# ─── 추가 import ─────────────────────────────────────────────
-import os, requests, json, dotenv
-
-import os, time, json, requests, dotenv         
+import os, time, json, requests, dotenv
 from pathlib import Path
-import pandas as pd                             
+
+import pandas as pd
 import streamlit as st
 import yfinance as yf
 import plotly.express as px
-
 dotenv.load_dotenv()                       # .env 로부터 토큰/ID 읽기
 
 print("DBG-ENV", os.getenv("NOTION_TOKEN")[:10], os.getenv("NOTION_DATABASE_ID"))
@@ -51,5 +48,6 @@ def load_holdings_from_notion() -> pd.DataFrame:
         })
     return pd.DataFrame(data)
 
-# holdings = pd.DataFrame(DEFAULT_HOLDINGS)   ← 지우고
+DEFAULT_HOLDINGS = []
+
 holdings = load_holdings_from_notion()        # ← 교체
