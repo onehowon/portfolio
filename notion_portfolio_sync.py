@@ -78,6 +78,11 @@ def set_price(page_id: str, price: float) -> None:
     payload = {"properties": {"Current Price": {"number": round(price, 2)}}}
     requests.patch(url, headers=HEAD, json=payload, timeout=30).raise_for_status()
 
+def set_value(page_id: str, units: float, price: float):
+    url = f"https://api.notion.com/v1/pages/{page_id}"
+    payload = {"properties": {"Market Value": {"number": round(units * price, 2)}}}
+    requests.patch(url, headers=HEAD, json=payload, timeout=30)
+
 
 def quote(ticker: str) -> float:
     """USD 가격 반환 (주식/ETF, Crypto, Gold)"""
