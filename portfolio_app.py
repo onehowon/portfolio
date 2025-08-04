@@ -1,27 +1,23 @@
 import os, time, json, requests, dotenv
 from pathlib import Path
-
 import pandas as pd
 import streamlit as st
 import yfinance as yf
 import plotly.express as px
 
-token = os.getenv("NOTION_TOKEN") or ""
-db_id = os.getenv("NOTION_DATABASE_ID") or ""
-print("DBG-ENV", token[:10], db_id[:8])
+dotenv.load_dotenv()  # ← ① 먼저 .env 로드
 
-dotenv.load_dotenv()                       # .env 로부터 토큰/ID 읽기
+NOTION_TOKEN = os.getenv("NOTION_TOKEN", "")
+NOTION_DB_ID = os.getenv("NOTION_DATABASE_ID", "")
 
-print("DBG-ENV", os.getenv("NOTION_TOKEN")[:10], os.getenv("NOTION_DATABASE_ID"))
+print("DBG-ENV", NOTION_TOKEN[:10], NOTION_DB_ID[:8])  # ← ② 정상 출력
 
-
-NOTION_TOKEN  = os.getenv("NOTION_TOKEN")
-NOTION_DB_ID  = os.getenv("NOTION_DATABASE_ID")
-HEAD = {
+HEAD = {                           # ③ DB-ID 오타 없음
     "Authorization": f"Bearer {NOTION_TOKEN}",
     "Notion-Version": "2022-06-28",
     "Content-Type": "application/json",
 }
+
 
 def load_holdings_from_notion() -> pd.DataFrame:
     """Notion 포트폴리오 DB → pandas.DataFrame"""
