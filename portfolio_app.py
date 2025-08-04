@@ -1,5 +1,13 @@
 # ─── 추가 import ─────────────────────────────────────────────
 import os, requests, json, dotenv
+
+import os, time, json, requests, dotenv         
+from pathlib import Path
+import pandas as pd                             
+import streamlit as st
+import yfinance as yf
+import plotly.express as px
+
 dotenv.load_dotenv()                       # .env 로부터 토큰/ID 읽기
 
 NOTION_TOKEN  = os.getenv("NOTION_TOKEN")
