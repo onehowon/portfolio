@@ -108,4 +108,4 @@ st.caption("Last updated: " + time.strftime("%Y-%m-%d %H:%M:%S"))
 # ─── 4. 즉시 수동 새로 고침 버튼 ────────────────────────────
 if st.sidebar.button("🔄 Refresh now"):
     st.cache_data.clear()
-    st.experimental_rerun()
+    st.rerun()
