@@ -80,7 +80,7 @@ refresh_sec = st.sidebar.slider("Auto-refresh (sec)", 30, 600, 120, 30)
 st.cache_data.clear()                       # 슬라이더 조정 시 캐시 초기화
 
 holdings = load_holdings_from_notion()
-if holdings.empty():
+if holdings.empty:
     st.warning("⚠️ Notion DB에서 데이터를 읽지 못했습니다.")
     st.stop()
 
