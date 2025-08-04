@@ -10,6 +10,9 @@ import plotly.express as px
 
 dotenv.load_dotenv()                       # .env 로부터 토큰/ID 읽기
 
+print("DBG-ENV", os.getenv("NOTION_TOKEN")[:10], os.getenv("NOTION_DATABASE_ID"))
+
+
 NOTION_TOKEN  = os.getenv("NOTION_TOKEN")
 NOTION_DB_ID  = os.getenv("NOTION_DATABASE_ID")
 HEAD = {
