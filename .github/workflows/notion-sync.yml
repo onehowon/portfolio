@@ -1,0 +1,17 @@
+name: Notion price sync
+on:
+  schedule:
+    - cron: '0 */6 * * *'      # 매 6시간 UTC
+  workflow_dispatch:           # 필요할 때 수동 실행
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install requests yfinance python-dotenv
+      - run: |
+          echo "NOTION_TOKEN=${{ secrets.NOTION_TOKEN }}" >> .env
+          echo "NOTION_DATABASE_ID=${{ secrets.NOTION_DATABASE_ID }}" >> .env
+          python notion_portfolio_sync.py
