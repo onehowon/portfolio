@@ -5,6 +5,11 @@ import pandas as pd
 import streamlit as st
 import yfinance as yf
 import plotly.express as px
+
+token = os.getenv("NOTION_TOKEN") or ""
+db_id = os.getenv("NOTION_DATABASE_ID") or ""
+print("DBG-ENV", token[:10], db_id[:8])
+
 dotenv.load_dotenv()                       # .env 로부터 토큰/ID 읽기
 
 print("DBG-ENV", os.getenv("NOTION_TOKEN")[:10], os.getenv("NOTION_DATABASE_ID"))
